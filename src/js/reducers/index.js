@@ -1,12 +1,5 @@
-// import { combineReducers } from 'redux'
 import { RESET_GAME, GAME_BOARD_BUTTON_CLICKED } from '../constants/actionTypes'
 import checkTicTacToe from '../utils/checkTicTacToe';
-
-const defaultState = [
-    ['', '', ''],
-    ['', '', ''],
-    ['', '', ''],
-];
 
 const initialState = {
   board: [["", "", ""], ["", "", ""], ["", "", ""]],
@@ -34,9 +27,14 @@ function board(state = initialState, action) {
                 board,
                 lastPlay,
                 isWinner: checkTicTacToe(board)
-            }
+            };
         case RESET_GAME:
-            return { ...defaultState };
+            let { board, lastPlay, isWinner } = initialState;
+            return { 
+                board, 
+                lastPlay, 
+                isWinner 
+            };
         default:
             return state;
     }
