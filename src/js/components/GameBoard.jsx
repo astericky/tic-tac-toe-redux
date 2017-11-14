@@ -14,7 +14,7 @@ const GameBoard = ({ board, lastPlay, hasWinner, handleBoardButtonClicked }) => 
         key={key++}
         type={item ? "default" : "primary"}
         disabled={hasWinner}
-        onClick={() => handleBoardButtonClicked(itemIndex, rowIndex)}
+        onClick={() => handleBoardButtonClicked(lastPlay, itemIndex, rowIndex)}
       >{item || '\0'}</Button>
     ))
   );
@@ -28,8 +28,9 @@ const mapStateToProps = ({ board, lastPlay, hasWinner }) => ({
 });
 
 const mapDistachToProps = dispatch => ({
-  handleBoardButtonClicked: (xPos, yPos) => {
-    dispatch(updateGame({xPos, yPos}));
+  handleBoardButtonClicked: (lastPlay, xPos, yPos) => {
+    const currentPlay = lastPlay === "O" ? "X" : "O";
+    dispatch(updateGame(currentPlay, xPos, yPos));
   }
 });
 

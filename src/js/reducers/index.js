@@ -27,10 +27,10 @@ function board(state = defaultState, action) {
 }
 
 function lastPlay(state = 'O', action) {
-    const { type, lastPlay } = action;
+    const { type } = action;
     switch (type) {
         case GAME_BOARD_BUTTON_CLICKED:
-            return lastPlay === 'O' ? 'X' : 'O';
+            return state === 'O' ? 'X' : 'O';
         case RESET_GAME:
             return 'O'
         default:
