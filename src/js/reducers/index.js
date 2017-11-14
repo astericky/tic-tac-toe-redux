@@ -17,23 +17,20 @@ function updateBoard(state, position) {
 }
 
 function board(state = initialState, action) {
-    let board;
-    let { lastPlay } = state;
     switch (action.type) {
         case GAME_BOARD_BUTTON_CLICKED:
-            lastPlay = lastPlay === "O" ? "X" : "O"; 
-            board = updateBoard(state, action.position);
+            let { lastPlay } = state;
+            let newBoard = updateBoard(state, action.position);
             return {
-                board,
-                lastPlay,
-                isWinner: checkTicTacToe(board)
+                board: newBoard,
+                lastPlay: lastPlay === "O" ? "X" : "O",
+                isWinner: checkTicTacToe(newBoard)
             };
         case RESET_GAME:
-            let { board, lastPlay, isWinner } = initialState;
             return { 
-                board, 
-                lastPlay, 
-                isWinner 
+                board: [["", "", ""], ["", "", ""], ["", "", ""]], 
+                lastPlay: "O", 
+                isWinner: false
             };
         default:
             return state;
