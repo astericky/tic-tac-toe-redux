@@ -10,6 +10,7 @@ const GameBoard = ({ board, lastPlay, hasWinner, handleBoardButtonClicked }) => 
   let buttons = board.map((row, rowIndex) =>
     row.map((item, itemIndex) => (
       <Button
+        className="game-board-button"
         key={key++}
         type={item ? "default" : "primary"}
         disabled={hasWinner}
