@@ -13,7 +13,7 @@ const GameBoard = ({ board, isWinner, handleBoardButtonClicked }) => {
         className="game-board-button"
         key={key++}
         type={item ? "default" : "primary"}
-        disabled={isWinner}
+        disabled={item || isWinner}
         onClick={() => handleBoardButtonClicked(itemIndex, rowIndex)}
       >{item || '\0'}</Button>
     ))

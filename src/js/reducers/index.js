@@ -1,22 +1,22 @@
 import { RESET_GAME, GAME_BOARD_BUTTON_CLICKED } from '../constants/actionTypes'
 import checkTicTacToe from '../utils/checkTicTacToe';
 
-const initialState = {
+const initialState = () => ({
   board: [["", "", ""], ["", "", ""], ["", "", ""]],
   lastPlay: "O",
   isWinner: false
-};
+});
 
 function updateBoard(state, position) {
-    const { board, lastPlay } = state;
+    const { lastPlay } = state;
     const { xPos, yPos } = position;
     const currentPlay = lastPlay === "O" ? "X" : "O";
-    const newState = [ ...board ];
-    newState[yPos][xPos] = currentPlay;
-    return newState;
+    const newBoard = state.board.map(row => row.map(column => column));
+    newBoard[yPos][xPos] = currentPlay;
+    return newBoard;
 }
 
-function board(state = initialState, action) {
+function board(state = initialState(), action) {
     switch (action.type) {
         case GAME_BOARD_BUTTON_CLICKED:
             let { lastPlay } = state;
@@ -27,11 +27,7 @@ function board(state = initialState, action) {
                 isWinner: checkTicTacToe(newBoard)
             };
         case RESET_GAME:
-            return { 
-                board: [["", "", ""], ["", "", ""], ["", "", ""]], 
-                lastPlay: "O", 
-                isWinner: false
-            };
+            return initialState();
         default:
             return state;
     }
