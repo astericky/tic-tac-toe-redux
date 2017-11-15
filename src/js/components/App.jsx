@@ -11,12 +11,12 @@ import '../../css/App.css';
 const app = ({
   lastPlay,
   isWinner,
-  handleResetButtonClicked
+  resetGame
 }) => {
   const resetButtonLabel = isWinner ? `${lastPlay} WINS!` : 'reset...';
   return (
     <div className="app">
-      <Button type="primary" onClick={ handleResetButtonClicked }>
+      <Button type="primary" onClick={ resetGame }>
         { resetButtonLabel }
       </Button>
       <GameBoard />
@@ -29,8 +29,6 @@ const mapStateToProps = ({ lastPlay, isWinner }) => ({
   isWinner
 });
 
-const mapDispatchToProps = {
-  handleResetButtonClicked: resetGame,
-};
+const mapDispatchToProps = { resetGame };
 
 export default connect(mapStateToProps, mapDispatchToProps)(app);
