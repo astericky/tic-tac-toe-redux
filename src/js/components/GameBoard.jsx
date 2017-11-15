@@ -26,10 +26,8 @@ const mapStateToProps = ({ board, isWinner }) => ({
   isWinner
 });
 
-const mapDistachToProps = dispatch => ({
-  handleBoardButtonClicked: (xPos, yPos) => {
-    dispatch(updateGame(xPos, yPos));
-  }
-});
+const mapDistachToProps = {
+  handleBoardButtonClicked: updateGame
+};
 
 export default connect(mapStateToProps, mapDistachToProps)(GameBoard);
