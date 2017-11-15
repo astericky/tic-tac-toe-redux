@@ -29,10 +29,8 @@ const mapStateToProps = ({ lastPlay, isWinner }) => ({
   isWinner
 });
 
-const mapDispatchToProps = disptach => ({
-  handleResetButtonClicked: () => {
-    disptach(resetGame());
-  }
-});
+const mapDispatchToProps = {
+  handleResetButtonClicked: resetGame,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(app);
